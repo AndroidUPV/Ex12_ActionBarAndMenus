@@ -1,0 +1,24 @@
+<!--
+  ~ Copyright (c) 2022
+  ~ David de Andrés and Juan Carlos Ruiz
+  ~ Development of apps for mobile devices
+  ~ Universitat Politècnica de València
+  -->
+<resources>
+    <string name="app_name">Ex12_ActionBarAndMenus</string>
+    <!-- Strings shared among elements -->
+    <string name="shared_help">Click the Next button to reach deeper levels.\n\nClick the Information option menu to get the current level.\n\nClick the hide/show option menu to hide/show this help.</string>
+    <string name="next">Next level</string>
+    <!-- Strings for FirstLevelFragment -->
+    <string name="first_level_label">At the first level</string>
+    <string name="first_level_help">You are starting your journey.</string>
+    <!-- Strings for DeeperLevelsFragment -->
+    <string name="deeper_levels_label">At deeper levels</string>
+    <string name="deeper_levels_help">Keep pushing forward!</string>
+    <!-- Strings for the menu -->
+    <string name="level_info">Level info</string>
+    <string name="hide_help">Hide help</string>
+    <string name="show_help">Show help</string>
+    <!-- Strings for the Toasts -->
+    <string name="level_info_message">You are currently at level %d</string>
+</resources>

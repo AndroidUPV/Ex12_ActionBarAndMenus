@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2022
+  ~ David de Andrés and Juan Carlos Ruiz
+  ~ Development of apps for mobile devices
+  ~ Universitat Politècnica de València
+  -->
+<!--
+  ~ Defines the navigation actions for each Fragment.
+  ~ The starting Fragment is FirstLevelFragment.
+  -->
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/firstLevelFragment">
+
+    <fragment
+        android:id="@+id/firstLevelFragment"
+        android:name="upv.dadm.ex12_actionbarandmenus.ui.fragments.FirstLevelFragment"
+        android:label="@string/first_level_label"
+        tools:layout="@layout/fragment_first_level">
+        <action
+            android:id="@+id/actionToSecondLevel"
+            app:destination="@id/deeperLevelsFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/deeperLevelsFragment"
+        android:name="upv.dadm.ex12_actionbarandmenus.ui.fragments.DeeperLevelsFragment"
+        android:label="@string/deeper_levels_label"
+        tools:layout="@layout/fragment_deeper_levels">
+        <!--The current level of the fragment is passed as argument-->
+        <argument
+            android:name="level"
+            android:defaultValue="2"
+            app:argType="integer" />
+        <action
+            android:id="@+id/actionToNextLevel"
+            app:destination="@id/deeperLevelsFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+    </fragment>
+</navigation>
