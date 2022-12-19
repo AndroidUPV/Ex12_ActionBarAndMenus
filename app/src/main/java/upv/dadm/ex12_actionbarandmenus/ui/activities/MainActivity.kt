@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // Make the custom ToolBar the ActionBar
-        setSupportActionBar(binding.tbMain)
+        setSupportActionBar(binding.toolbar)
         // Get an instance of the NavController.
         // findNavController() does not work properly with FragmentContainerView in onCreate()
         val navController = binding.navHostFragment.getFragment<NavHostFragment>().navController
