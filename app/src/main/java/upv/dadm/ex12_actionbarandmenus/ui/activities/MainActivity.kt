@@ -48,7 +48,9 @@ class MainActivity : AppCompatActivity() {
      * if it does not succeed, then tries again from the AppCompatActivity.
      */
     override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.navHostFragment)
-        return navigateUp(navController, appBarConfiguration) || super.onSupportNavigateUp()
+        return navigateUp(
+            findNavController(R.id.navHostFragment),
+            appBarConfiguration
+        ) || super.onSupportNavigateUp()
     }
 }
