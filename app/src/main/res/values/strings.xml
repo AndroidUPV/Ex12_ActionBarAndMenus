@@ -7,7 +7,7 @@
 <resources>
     <string name="app_name">Ex12_ActionBarAndMenus</string>
     <!-- Strings shared among elements -->
-    <string name="shared_help">Click the Next button to reach deeper levels.\n\nClick the Information option menu to get the current level.\n\nClick the hide/show option menu to hide/show this help.</string>
+    <string name="shared_help">Click the Next button to reach deeper levels.\n\nClick the Information option menu to get the current level.\n\nClick the Forward option menu to set the number of levels to go forward.\n\nClick the hide/show option menu to hide/show this help.</string>
     <string name="next">Next level</string>
     <!-- Strings for FirstLevelFragment -->
     <string name="first_level_label">At the first level</string>
