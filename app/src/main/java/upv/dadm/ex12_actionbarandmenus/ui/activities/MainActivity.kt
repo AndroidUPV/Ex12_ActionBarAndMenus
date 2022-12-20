@@ -36,9 +36,11 @@ class MainActivity : AppCompatActivity() {
         // Get an instance of the NavController.
         // findNavController() does not work properly with FragmentContainerView in onCreate()
         val navController = binding.navHostFragment.getFragment<NavHostFragment>().navController
+        // The AppBarConfiguration sets as starting fragments (without Up navigation icon)
+        // those highlighted as Home in the navigation graph
+        appBarConfiguration = AppBarConfiguration(navController.graph)
         // Configure the ActionBar to work with the NavController,
         // so that its title is updated when navigating
-        appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
     }
 
