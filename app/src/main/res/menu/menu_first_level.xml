@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2022
+  ~ David de Andrés and Juan Carlos Ruiz
+  ~ Development of apps for mobile devices
+  ~ Universitat Politècnica de València
+  -->
+<!-- Menu for all the fragments regardless their level -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <!-- Elements shown in the ActionBar is there is room -->
+
+    <!-- Displays the current level -->
+    <item
+        android:id="@+id/mLevelInfo"
+        android:icon="@android:drawable/ic_menu_info_details"
+        android:title="@string/level_info"
+        app:showAsAction="ifRoom" />
+
+    <!-- Elements moved to the overflow menu -->
+
+    <!-- Hides the help information -->
+    <item
+        android:id="@+id/mHideHelp"
+        android:icon="@drawable/ic_hide_help"
+        android:title="@string/hide_help"
+        app:showAsAction="never" />
+    <!-- Shows the help information -->
+    <item
+        android:id="@+id/mShowHelp"
+        android:icon="@drawable/ic_show_help"
+        android:title="@string/show_help"
+        app:showAsAction="never" />
+</menu>

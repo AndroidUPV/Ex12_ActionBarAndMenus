@@ -15,6 +15,13 @@
         android:icon="@android:drawable/ic_menu_info_details"
         android:title="@string/level_info"
         app:showAsAction="ifRoom" />
+    <!-- Enables going forward several levels at once -->
+    <item
+        android:id="@+id/mForward"
+        android:icon="@drawable/ic_forward"
+        android:title="@string/forward"
+        app:actionViewClass="android.widget.EditText"
+        app:showAsAction="ifRoom|collapseActionView" />
 
     <!-- Elements moved to the overflow menu -->
 
@@ -24,7 +31,7 @@
         android:icon="@drawable/ic_hide_help"
         android:title="@string/hide_help"
         app:showAsAction="never" />
-    <!-- shows the help information -->
+    <!-- Shows the help information -->
     <item
         android:id="@+id/mShowHelp"
         android:icon="@drawable/ic_show_help"

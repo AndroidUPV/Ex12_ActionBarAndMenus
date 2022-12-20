@@ -17,6 +17,8 @@
     <string name="deeper_levels_help">Keep pushing forward!</string>
     <!-- Strings for the menu -->
     <string name="level_info">Level info</string>
+    <string name="forward">Go forward several levels</string>
+    <string name="forward_hint">Levels to go forward</string>
     <string name="hide_help">Hide help</string>
     <string name="show_help">Show help</string>
     <!-- Strings for the Toasts -->

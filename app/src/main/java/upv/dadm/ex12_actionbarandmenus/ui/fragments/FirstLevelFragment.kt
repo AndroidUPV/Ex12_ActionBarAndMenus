@@ -64,9 +64,15 @@ class FirstLevelFragment : Fragment(R.layout.fragment_first_level), MenuProvider
         }
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        // Clear resources to make them eligible for garbage collection
+        _binding = null
+    }
+
     // Populates the ActionBar with action elements
     override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) =
-        menuInflater.inflate(R.menu.menu_shared, menu)
+        menuInflater.inflate(R.menu.menu_first_level, menu)
 
     // Allows the modification of elements of the already created menu before showing it
     override fun onPrepareMenu(menu: Menu) {
@@ -82,11 +88,7 @@ class FirstLevelFragment : Fragment(R.layout.fragment_first_level), MenuProvider
 
             // Show a message displaying the current level (1)
             R.id.mLevelInfo -> {
-                Toast.makeText(
-                    requireContext(),
-                    getString(R.string.level_info_message, 1),
-                    Toast.LENGTH_SHORT
-                ).show()
+                displayMessage()
                 true
             }
 
@@ -107,4 +109,13 @@ class FirstLevelFragment : Fragment(R.layout.fragment_first_level), MenuProvider
     private fun navigateToNextLevel() =
         findNavController().navigate(FirstLevelFragmentDirections.actionToSecondLevel(2))
 
+    /**
+     * Displays a message.
+     */
+    private fun displayMessage() =
+        Toast.makeText(
+            requireContext(),
+            getString(R.string.level_info_message, 1),
+            Toast.LENGTH_SHORT
+        ).show()
 }
