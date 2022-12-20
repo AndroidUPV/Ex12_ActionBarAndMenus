@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
 import upv.dadm.ex12_actionbarandmenus.R
 import upv.dadm.ex12_actionbarandmenus.databinding.ActivityMainBinding
@@ -20,6 +21,8 @@ import upv.dadm.ex12_actionbarandmenus.databinding.ActivityMainBinding
  * Each new level is represented by a new Fragment.
  */
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +38,8 @@ class MainActivity : AppCompatActivity() {
         val navController = binding.navHostFragment.getFragment<NavHostFragment>().navController
         // Configure the ActionBar to work with the NavController,
         // so that its title is updated when navigating
-        setupActionBarWithNavController(navController, AppBarConfiguration(navController.graph))
+        appBarConfiguration = AppBarConfiguration(navController.graph)
+        setupActionBarWithNavController(navController, appBarConfiguration)
     }
 
     /**
@@ -45,6 +49,7 @@ class MainActivity : AppCompatActivity() {
      */
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.navHostFragment)
-        return navController.navigateUp() || super.onSupportNavigateUp()
+        return NavigationUI.navigateUp(navController, appBarConfiguration)
+                || super.onSupportNavigateUp()
     }
 }
