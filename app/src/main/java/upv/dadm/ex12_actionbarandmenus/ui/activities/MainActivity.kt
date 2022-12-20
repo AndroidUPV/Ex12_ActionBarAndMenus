@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.NavigationUI.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import upv.dadm.ex12_actionbarandmenus.R
 import upv.dadm.ex12_actionbarandmenus.databinding.ActivityMainBinding
@@ -49,7 +49,6 @@ class MainActivity : AppCompatActivity() {
      */
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.navHostFragment)
-        return NavigationUI.navigateUp(navController, appBarConfiguration)
-                || super.onSupportNavigateUp()
+        return navigateUp(navController, appBarConfiguration) || super.onSupportNavigateUp()
     }
 }
