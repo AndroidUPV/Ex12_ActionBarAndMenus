@@ -21,7 +21,7 @@ import androidx.lifecycle.ViewModel
 class LevelsViewModel: ViewModel() {
 
     // Backing property for the number of levels to go forward
-    private var _levelsForward = MutableLiveData(1)
+    private val _levelsForward = MutableLiveData(1)
 
     // Number of levels to go forward
     val levelsForward: LiveData<Int>

@@ -21,7 +21,7 @@ import androidx.lifecycle.ViewModel
 class HelpViewModel : ViewModel() {
 
     // Backing property for visibility of the help
-    private var _visible = MutableLiveData(true)
+    private val _visible = MutableLiveData(true)
 
     // Visibility of the help
     val visible: LiveData<Boolean>
