@@ -26,8 +26,11 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import kotlinx.coroutines.launch
 import upv.dadm.ex12_actionbarandmenus.R
 import upv.dadm.ex12_actionbarandmenus.databinding.FragmentDeeperLevelsBinding
 import upv.dadm.ex12_actionbarandmenus.ui.viewmodels.HelpViewModel
@@ -61,7 +64,7 @@ class DeeperLevelsFragment : Fragment(R.layout.fragment_deeper_levels), MenuProv
     private val expandListener = object : OnActionExpandListener {
         // Update the EditText with the current value stored in the ViewModel
         override fun onMenuItemActionExpand(item: MenuItem): Boolean {
-            (item.actionView as EditText).setText(levelsViewModel.levelsForward.value!!.toString())
+            (item.actionView as EditText).setText(levelsViewModel.levelsForward.value.toString())
             return true
         }
 
@@ -90,10 +93,14 @@ class DeeperLevelsFragment : Fragment(R.layout.fragment_deeper_levels), MenuProv
             Lifecycle.State.RESUMED
         )
 
-        // Update the action elements and the text help according to the selected visibility
-        helpViewModel.visible.observe(viewLifecycleOwner) { visible ->
-            (requireActivity() as MenuHost).invalidateMenu()
-            binding.tvSharedHelpDeeperLevels.isVisible = visible
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                // Update the action elements and the text help according to the selected visibility
+                helpViewModel.visible.collect { visible ->
+                    (requireActivity() as MenuHost).invalidateMenu()
+                    binding.tvSharedHelpDeeperLevels.isVisible = visible
+                }
+            }
         }
     }
 
@@ -151,7 +158,7 @@ class DeeperLevelsFragment : Fragment(R.layout.fragment_deeper_levels), MenuProv
     private fun navigateToDeeperLevels() =
         findNavController().navigate(
             DeeperLevelsFragmentDirections.actionToNextLevel(
-                levelsViewModel.levelsForward.value!!.plus(args.level)
+                levelsViewModel.levelsForward.value.plus(args.level)
             )
         )
 

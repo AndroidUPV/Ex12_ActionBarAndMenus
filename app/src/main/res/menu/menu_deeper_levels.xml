@@ -26,7 +26,6 @@
         android:title="@string/forward"
         app:actionViewClass="android.widget.EditText"
         app:showAsAction="ifRoom|collapseActionView" />
-
     <!-- Elements moved to the overflow menu -->
 
     <!-- Hides the help information -->

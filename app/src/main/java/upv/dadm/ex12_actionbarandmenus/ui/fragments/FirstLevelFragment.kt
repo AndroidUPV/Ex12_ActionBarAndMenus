@@ -23,7 +23,10 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import kotlinx.coroutines.launch
 import upv.dadm.ex12_actionbarandmenus.R
 import upv.dadm.ex12_actionbarandmenus.databinding.FragmentFirstLevelBinding
 import upv.dadm.ex12_actionbarandmenus.ui.viewmodels.HelpViewModel
@@ -61,10 +64,14 @@ class FirstLevelFragment : Fragment(R.layout.fragment_first_level), MenuProvider
             Lifecycle.State.RESUMED
         )
 
-        // Update the action elements and the text help according to the selected visibility
-        viewModel.visible.observe(viewLifecycleOwner) { visible ->
-            (requireActivity() as MenuHost).invalidateMenu()
-            binding.tvSharedHelpFirstLevels.isVisible = visible
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                // Update the action elements and the text help according to the selected visibility
+                viewModel.visible.collect { visible ->
+                    (requireActivity() as MenuHost).invalidateMenu()
+                    binding.tvSharedHelpFirstLevels.isVisible = visible
+                }
+            }
         }
     }
 

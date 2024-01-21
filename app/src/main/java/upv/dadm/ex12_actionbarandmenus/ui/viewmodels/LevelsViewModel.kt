@@ -11,27 +11,33 @@
 
 package upv.dadm.ex12_actionbarandmenus.ui.viewmodels
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 
 /**
  * Holds the number of levels to go back.
  */
-class LevelsViewModel: ViewModel() {
+class LevelsViewModel : ViewModel() {
 
     // Backing property for the number of levels to go forward
-    private val _levelsForward = MutableLiveData(1)
+    private val _levelsForward = MutableStateFlow(1)
 
     // Number of levels to go forward
-    val levelsForward: LiveData<Int>
-        get() = _levelsForward
+    val levelsForward = _levelsForward.asStateFlow()
 
     /**
      * Changes the number of levels to go forward.
      */
     fun setLevelsForward(levels: Int) {
-        _levelsForward.value = levels
+        viewModelScope.launch {
+            _levelsForward.update {
+                levels
+            }
+        }
     }
 
 }

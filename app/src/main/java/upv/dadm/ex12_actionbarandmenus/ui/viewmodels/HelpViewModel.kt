@@ -11,9 +11,12 @@
 
 package upv.dadm.ex12_actionbarandmenus.ui.viewmodels
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 
 /**
  * Holds the visibility of the help text.
@@ -21,16 +24,19 @@ import androidx.lifecycle.ViewModel
 class HelpViewModel : ViewModel() {
 
     // Backing property for visibility of the help
-    private val _visible = MutableLiveData(true)
+    private val _visible = MutableStateFlow(true)
 
     // Visibility of the help
-    val visible: LiveData<Boolean>
-        get() = _visible
+    val visible = _visible.asStateFlow()
 
     /**
      * Changes the current visibility of the help.
      */
     fun switchVisibility() {
-        _visible.value = _visible.value?.not()
+        viewModelScope.launch {
+            _visible.update { currentValue ->
+                currentValue.not()
+            }
+        }
     }
 }
